@@ -30,7 +30,7 @@ void directories::list_directory(const std::string& d) {
 }
 void directories::make_directory(const std::string& d) {
     std::error_code ec;
-    const std::string path = "./" + d;
+    const std::filesystem::path path = d;
     std::filesystem::create_directory(path, ec);
     if(ec) {
         std::cerr << "could complete the proccess: " << ec.message() << std::endl;
@@ -39,7 +39,7 @@ void directories::make_directory(const std::string& d) {
 void directories::make_file(const std::string& filename) {
     std::string cwd;
     directories::get_cwd(cwd);
-    std::string path = cwd + "\\" + filename;
+    std::filesystem::path path = cwd + "\\" + filename;
     std::ofstream file(path);
     if(file.is_open()) {
         std::cout << "File created Successfully on: " << path << std::endl;
